@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Burial Map{% endblock %}
+
+{% block content %}
+<h1>Register to Access Full Information</h1>
+<form method="post" action="{{ url_for('register') }}">
+    <div class="mb-3">
+        <label for="full_name" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="full_name" name="full_name" required>
+    </div>
+    <div class="mb-3">
+        <label for="phone_number" class="form-label">Phone Number</label>
+        <input type="tel" class="form-control" id="phone_number" name="phone_number" required>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="mb-3">
+        <label for="access_reason" class="form-label">Reason for Access</label>
+        <textarea class="form-control" id="access_reason" name="access_reason" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Register & Proceed to Payment</button>
+</form>
+{% endblock %}

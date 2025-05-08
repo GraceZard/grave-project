@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Burial Map{% endblock %}
+
+{% block content %}
+<h1>Login</h1>
+<form method="post" action="{{ url_for('login') }}">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="mb-3">
+        <label for="access_code" class="form-label">Access Code</label>
+        <input type="text" class="form-control" id="access_code" name="access_code" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Payment - Burial Map{% endblock %}
+
+{% block content %}
+<h1>Payment</h1>
+<p>Thank you, {{ user.full_name }}. Please make a payment of RM5 to access full information.</p>
+
+<form method="post" action="{{ url_for('payment', user_id=user.id) }}">
+    <button type="submit" class="btn btn-primary">Pay RM5</button>
+</form>
+{% endblock %}
