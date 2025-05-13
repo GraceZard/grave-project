@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Payment - Burial Map{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <h1 class="text-center">Payment</h1>
+    <p class="text-center">Thank you, {{ user.email }}. Please make a payment of at least RM1 to access full information.</p>
+
+    <form method="post" action="{{ url_for('payment', user_id=user.id) }}" class="mx-auto" style="max-width: 400px;">
+        <div class="mb-3">
+            <label for="amount" class="form-label">Payment Amount (RM)</label>
+            <input type="number" step="0.01" min="1" class="form-control" id="amount" name="amount" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Pay</button>
+    </form>
+</div>
+{% endblock %}
