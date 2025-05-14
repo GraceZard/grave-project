@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Burial Map{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <h1 class="text-center text-light mb-4">Daftar Akaun Anda</h1>
+    <p class="text-center text-light mb-4">Akses maklumat penuh seperti nombor batu nisan, tempoh hayat, dan waris.</p>
+
+    <!-- Notifikasi Flash Message -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="mb-4">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show shadow" role="alert">
+                        <i class="fas {{ 'fa-check-circle' if category == 'success' else 'fa-exclamation-triangle' }}"></i>
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <form method="post" action="{{ url_for('register') }}" class="mx-auto bg-dark text-light p-4 rounded shadow" style="max-width: 400px; animation: fadeIn 0.6s ease-out;">
+        <div class="mb-3">
+            <label for="email" class="form-label">Alamat Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Kata Laluan</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Daftar & Teruskan ke Pembayaran</button>
+    </form>
+
+    <div class="text-center mt-4">
+        <p class="text-light">Sudah ada akaun? <br>
+        <a href="{{ url_for('login') }}" class="text-decoration-none" style="color:#00ffcc;">Klik di sini untuk log masuk</a></p>
+    </div>
+</div>
+{% endblock %}

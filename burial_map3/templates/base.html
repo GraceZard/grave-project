@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Burial Map{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        h1, h2 {
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+
+        .navbar {
+            background-color: #000000;
+            padding-top: 0.1rem;
+            padding-bottom: 0.1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
+        }
+
+        .navbar .navbar-brand {
+            color: white !important;
+            font-size: 1.2rem;
+        }
+
+        .navbar .nav-link {
+            color: white !important;
+            font-size: 0.95rem;
+        }
+
+        .navbar .nav-link:hover {
+            color: #f1f1f1 !important;
+        }
+
+        .main-content {
+            padding-top: 80px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+
+        form {
+            background-color: #2a2a2a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 255, 204, 0.3);
+            max-width: 500px;
+            margin: 50px auto;
+            animation: fadeIn 1s ease-out;
+        }
+
+        input, button {
+            font-size: 1.1rem;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 12px;
+        }
+
+        button[type="submit"] {
+            background-color: #00ffcc;
+            color: #121212;
+            font-size: 1.1rem;
+            padding: 12px 30px;
+            width: 100%;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #00cc99;
+            box-shadow: 0px 0px 15px rgba(0, 255, 204, 0.8);
+        }
+
+        .container {
+            margin-top: 30px; /* padding-top untuk jarak antara content dan navbar */
+        }
+
+        .container-login{
+            margin-top: 2.5rem;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #222;
+            padding: 20px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            color: #fff;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: #00ffcc;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .alert {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            form {
+                padding: 20px;
+                margin: 30px 15px;
+            }
+
+            .navbar .navbar-brand, .navbar .nav-link {
+                font-size: 1rem;
+            }
+
+            input, button {
+                font-size: 1rem;
+                padding: 10px;
+            }
+
+            footer p {
+                font-size: 0.9rem;
+            }
+
+            .main-content {
+                padding-top: 60px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar .navbar-brand {
+                font-size: 1rem;
+            }
+        }
+
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.6); /* putih separa lut */
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}">
+                <i class="fas fa-map-marker-alt"></i> Perkuburan Felda Air Tawar 1
+            </a>
+            <!-- Toggler button for mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    {% if session.get('user_id') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout') }}">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('register') }}">
+                                <i class="fas fa-user-plus"></i> Register
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('login') }}">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Burial Map. All Rights Reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
