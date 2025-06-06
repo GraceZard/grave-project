@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Grave Details - Burial Map{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card bg-dark text-light shadow-lg mb-4" style="animation: fadeIn 0.8s ease-out;">
+        <div class="card-header border-bottom border-secondary">
+            <h2 class="mb-0 text-center">Maklumat Pengebumian</h2>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <p><strong>Nama:</strong> {{ grave.name }}</p>
+                    <p><strong>Tarikh Lahir:</strong> {{ grave.date_of_birth }}</p>
+                    <p><strong>Tarikh Meninggal:</strong> {{ grave.date_of_death }}</p>
+                    <p><strong>Nombor Lot:</strong> {{ grave.lot_number }}</p>
+                    <p><strong>Blok / Seksyen:</strong> {{ grave.section }}</p>
+                </div>
+                <div class="col-md-6">
+                    {% if grave.picture_url %}
+                    <div class="text-center mb-3">
+                        <img src="{{ grave.picture_url }}" alt="Gambar Kubur" class="img-fluid rounded border border-light shadow-sm" />
+                    </div>
+                    {% endif %}
+                    <p><strong>Keluarga / Waris:</strong> {{ grave.family_details }}</p>
+                    <p><strong>Catatan Tambahan:</strong> {{ grave.notes }}</p>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="{{ url_for('home') }}" class="btn btn-outline-light px-4">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Halaman Utama
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
